@@ -1,95 +1,87 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import React, { useEffect, useState } from "react";
+import gsap from "gsap";
+import axios from "axios";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import { Hero, HeroImage, Thumb } from "./components/home/hero";
+import Destination from "./components/home/destination";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [num, setNum] = useState<number>(0);
+  const [banner, setBanner] = useState<Array<number>>([0, 1, 2]);
+  const [data, setData] = useState<Record<string, unknown>>({});
+  const [loading, setLoading] = useState<boolean>(true);
+  // const [error, setError] = useState("");
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const fetchData = async () => {
+      // try {
+      const response = await axios.get(
+        "https://api.misritalia.beyond-creation.net/api/page/page/home"
+      );
+      const fetchedData = response.data;
+      setData(fetchedData.data.page);
+      // } catch (error) {
+      //   setError("Error fetching data");
+      // } finally {
+      //   setLoading(false);
+      // }
+    };
+    fetchData();
+  }, []);
+
+  console.log(data.destinations);
+
+  return (
+    <main id="home">
+      <div className="thumbs">
+        <ul className="thumbs-wrap">
+          {banner.map((_, idx) => {
+            return (
+              <Thumb
+                key={idx}
+                idx={idx}
+                banner={num}
+                length={banner.length}
+                onClick={() => setNum(idx)}
+              />
+            );
+          })}
+          {banner.map((_, idx) => {
+            return (
+              <Thumb
+                key={idx}
+                idx={banner.length}
+                banner={num}
+                length={banner.length}
+                onClick={() => setNum(idx)}
+              />
+            );
+          })}
+        </ul>
+      </div>
+      <section className="heros">
+        {banner.map((_, idx) => {
+          return <Hero key={idx} idx={idx} banner={num} />;
+        })}
+        <div className="heros-images">
+          {banner.map((_, idx) => {
+            return (
+              <HeroImage
+                key={idx}
+                idx={idx}
+                banner={num}
+                length={banner.length}
+              />
+            );
+          })}
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+      <Destination />
+    </main>
   );
 }

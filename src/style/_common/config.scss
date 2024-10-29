@@ -1,0 +1,46 @@
+// font
+$primaryfont: "suisselintl";
+
+// VW
+$VW: VW(1, 1920);
+
+// brand
+:root {
+  --clr-white: #{$white};
+  --clr-black: #{$black};
+  --elistic: all 0.5s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  --body-fs: #{max(12, VW(16, 1920))};
+  --vw: #{$VW};
+}
+
+// breakpoints
+$mobile: 680px;
+$tablet: 1022px;
+$laptop: 1280px;
+$desktop: 1728px;
+
+// desktop-grid
+$desk-cols: 18;
+$desk-gap: VW(12);
+
+$desk-top: calc($VW * 73);
+$desk-left: calc($VW * 90);
+
+$desk-bottom: $desk-top;
+$desk-right: $desk-left;
+
+$desk-cols-color: rgb(91, 91, 91, 0.4);
+$desk-rows-color: rgb(0, 41, 255, 0.4);
+
+// mobile-grid
+$mobile-cols: 8;
+$mobile-gap: 8vw;
+
+$mobile-top: VH(30, 844);
+$mobile-left: VH(15, 844);
+
+$mobile-bottom: VH(28, 844);
+$mobile-right: $mobile-left;
+
+$mobile-cols-color: rgba(230, 174, 69, 0.883);
+$mobile-rows-color: rgba(230, 174, 69, 0.883);

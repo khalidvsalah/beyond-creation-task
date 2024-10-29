@@ -1,0 +1,50 @@
+%rcc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// row
+%rcb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+%reb {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+%rsb {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+// column
+%ccb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+%csb {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+%ceb {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+%fixed {
+  @extend %full;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+}

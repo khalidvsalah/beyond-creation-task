@@ -1,0 +1,15 @@
+@mixin position($t, $b, $l, $r) {
+  top: $t;
+  left: $l;
+
+  bottom: $b;
+  right: $r;
+}
+@mixin fixed($t, $l, $r: 0%, $b: 0%) {
+  @include position($t, $b, $l, $r);
+  position: fixed;
+}
+@mixin absolute($t, $l, $r: 0%, $b: 0%) {
+  @include position($t, $b, $l, $r);
+  position: absolute;
+}

@@ -1,0 +1,86 @@
+@mixin rem($t, $l, $r, $b, $gap, $cols-color, $rows-color, $o) {
+  #grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+
+    pointer-events: none;
+    z-index: 999;
+
+    .rows,
+    .cols {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+    }
+
+    .cols {
+      padding: 0% $r;
+
+      display: flex;
+      justify-content: space-between;
+      gap: $gap;
+    }
+
+    .rows {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .row {
+      background-color: $rows-color;
+
+      &:nth-child(1) {
+        height: $t;
+      }
+
+      &:nth-child(2) {
+        height: $b;
+      }
+    }
+
+    .col {
+      height: 100%;
+      flex: 1;
+
+      background-color: $cols-color;
+
+      &:nth-child(n + #{ $o + 1}) {
+        display: none;
+      }
+    }
+  }
+}
+@include media("<=tablet") {
+  @include rem(
+    $mobile-top,
+    $mobile-left,
+    $mobile-right,
+    $mobile-bottom,
+    $mobile-gap,
+    $mobile-cols-color,
+    $mobile-rows-color,
+    $mobile-cols
+  );
+}
+@include media(">tablet") {
+  @include rem(
+    $desk-top,
+    $desk-left,
+    $desk-right,
+    $desk-bottom,
+    $desk-gap,
+    $desk-cols-color,
+    $desk-rows-color,
+    $desk-cols
+  );
+}

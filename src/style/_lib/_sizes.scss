@@ -1,0 +1,20 @@
+%full {
+  height: 100%;
+  width: 100%;
+}
+
+%half {
+  height: 50%;
+  width: 50%;
+}
+
+%img {
+  @extend %full;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+%rounded {
+  border-radius: 50%;
+}

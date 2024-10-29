@@ -1,0 +1,612 @@
+/* Hero Page CSS Start */
+#home {
+  .heros {
+    position: relative;
+    overflow: hidden;
+
+    .tfx {
+      transform: translateY(105%);
+      opacity: 0;
+    }
+  }
+
+  $heroHeight: calc(var(--vw) * 1380);
+
+  .hero {
+    position: relative;
+
+    height: $heroHeight;
+
+    padding-bottom: calc(var(--vw) * 165);
+    padding-top: calc(var(--vw) * 200);
+    padding-inline: $desk-left;
+
+    color: var(--clr-white);
+
+    pointer-events: none;
+    overflow: hidden;
+
+    & > h3 {
+      width: calc(var(--vw) * 560);
+
+      font-size: calc(var(--vw) * 96);
+      font-weight: 300;
+      text-transform: uppercase;
+
+      line-height: 90%;
+      letter-spacing: -0.3vw;
+
+      padding-bottom: calc(var(--vw) * 76);
+    }
+
+    .video-player {
+      height: calc(var(--vw) * 60);
+      display: flex;
+      align-items: center;
+
+      .player {
+        margin-right: calc(var(--vw) * 20);
+        width: calc(var(--vw) * 60);
+        cursor: pointer;
+
+        svg {
+          circle {
+            transition: all 0.2s ease-out;
+            transform-origin: center;
+          }
+        }
+
+        &:hover {
+          circle {
+            opacity: 1;
+            stroke-width: 2px;
+            transform: scale(0.9);
+          }
+        }
+      }
+
+      span {
+        display: block;
+        width: calc(var(--vw) * 122);
+      }
+
+      svg {
+        @extend %full;
+      }
+    }
+
+    .hero-content {
+      position: absolute;
+
+      top: 57%;
+      left: calc(var(--vw) * 855);
+
+      h3 {
+        font-size: calc(var(--vw) * 30);
+        font-weight: 400;
+        padding-bottom: calc(var(--vw) * 20);
+      }
+
+      p {
+        width: calc(var(--vw) * 610);
+        padding-bottom: calc(var(--vw) * 40);
+
+        font-size: calc(var(--vw) * 20);
+        font-weight: 400;
+        line-height: 150%;
+      }
+
+      ul {
+        height: calc(var(--vw) * 50);
+
+        li {
+          @extend %rcc;
+
+          height: 100%;
+          width: calc(var(--vw) * 170);
+
+          border-radius: 4em;
+          background: var(--clr-white);
+        }
+      }
+
+      button {
+        font-size: calc(var(--vw) * 16);
+        font-weight: 600;
+        text-transform: uppercase;
+        color: $black;
+      }
+    }
+
+    .hero-facts {
+      @extend %rsb;
+
+      position: absolute;
+      top: 85%;
+      left: 0;
+      width: 100%;
+
+      padding-left: calc($desk-left + var(--vw) * 760);
+      padding-right: $desk-left;
+      opacity: 0;
+
+      $height: calc(var(--vw) * 60);
+
+      .fact {
+        @extend %csb;
+
+        height: calc($height * 1.5);
+
+        h4 {
+          color: $w300;
+          font-size: max(VW(16, 1920), 14px);
+          font-weight: 400;
+        }
+
+        div {
+          display: flex;
+          align-items: center;
+
+          height: $height;
+          font-size: $height;
+
+          overflow: hidden;
+
+          ul.up {
+            align-self: flex-start;
+            margin-top: $height;
+            will-change: transform;
+          }
+
+          ul {
+            text-align: center;
+          }
+        }
+
+        li {
+          height: $height;
+        }
+      }
+    }
+
+    &:nth-child(n + 2) {
+      @extend %full;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .thumbs {
+    position: absolute;
+    top: 72%;
+    left: $desk-left;
+
+    $height: VW(162, 1920);
+    height: calc($height * 2 + 1em * 2);
+
+    overflow: hidden;
+    z-index: 9;
+
+    .thumbs-wrap {
+      height: auto;
+
+      .thumb {
+        width: VW(260, 1920);
+        padding-bottom: 1em;
+        cursor: pointer;
+
+        .thumb-wrap {
+          position: relative;
+          height: $height;
+          border-radius: 1em;
+          background: red;
+          overflow: hidden;
+        }
+
+        &:hover {
+          .thumb-bg {
+            transform: scale(1.2);
+          }
+
+          .thumb-hover {
+            opacity: 1;
+          }
+        }
+      }
+
+      .thumb-bg,
+      .thumb-hover {
+        @extend %full;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: all 0.3s $io2;
+
+        img {
+          @extend %img;
+        }
+      }
+
+      .thumb-hover {
+        opacity: 0;
+      }
+    }
+  }
+
+  .heros-images {
+    width: 100%;
+    min-height: $heroHeight;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    z-index: -1;
+    overflow: hidden;
+
+    .hero-image {
+      width: 100%;
+      height: $heroHeight;
+      overflow: hidden;
+
+      img {
+        @extend %img;
+
+        transform: scale(1.2);
+        display: block;
+      }
+    }
+  }
+}
+
+//* Mobile
+#home {
+  @include media("<tablet") {
+    $heroHeight: calc(var(--vw) * 1100);
+
+    .hero {
+      position: relative;
+
+      height: $heroHeight;
+
+      padding-inline: $mobile-left;
+      padding-top: VH(140, 844);
+      padding-bottom: VH(40, 844);
+
+      & > h3 {
+        font-size: max(VH(40, 844), 40px);
+        width: max(VW(550, 844), 250px);
+        padding-bottom: 1em;
+      }
+
+      .video-player {
+        position: absolute;
+        top: 70%;
+      }
+
+      .hero-content {
+        top: 32%;
+        left: $mobile-left;
+
+        flex-direction: column-reverse;
+        width: 100%;
+
+        h3 {
+          font-size: 1em;
+          padding-bottom: VH(20, 844);
+        }
+
+        p {
+          width: 80%;
+          font-size: 0.8em;
+          line-height: 140%;
+        }
+
+        ul {
+          li {
+            width: 7em;
+            height: 80%;
+
+            button {
+              font-size: 10px;
+            }
+          }
+        }
+      }
+
+      .hero-facts {
+        width: 100%;
+        padding-inline: $mobile-left;
+
+        top: 80%;
+
+        flex-wrap: wrap;
+        gap: 20px;
+
+        $height: 2em;
+
+        .fact {
+          h4 {
+            font-size: 12px;
+            padding-bottom: 1.1em;
+          }
+
+          div {
+            height: $height;
+            font-size: $height;
+          }
+        }
+      }
+    }
+
+    .thumbs {
+      $height: VH(100, 844);
+      height: calc($height * 2 + 1em * 2);
+
+      top: 60%;
+
+      left: auto;
+      right: $mobile-left;
+
+      .thumbs-wrap {
+        .thumb {
+          width: VH(160, 844);
+
+          .thumb-wrap {
+            height: $height;
+          }
+        }
+      }
+    }
+
+    .heros-images {
+      min-height: $heroHeight;
+
+      .hero-image {
+        height: $heroHeight;
+      }
+    }
+  }
+}
+/* Hero Page CSS End */
+
+/* Destination Page CSS Start */
+#home .destination {
+  position: relative;
+  padding-inline: $desk-left;
+  padding-block: VW(150, 1920);
+
+  .destination-header {
+    position: relative;
+    z-index: 5;
+  }
+
+  .nav-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    button {
+      color: var(--clr-black);
+    }
+  }
+
+  .destination-cards {
+    @extend %ccb;
+
+    width: 100%;
+
+    & > ul {
+      width: 100%;
+    }
+
+    .destination-card {
+      width: 100%;
+      padding-top: VW(75, 1920);
+
+      .destination-card-wrap {
+        display: flex;
+        justify-content: space-between;
+
+        border-radius: 1em;
+        border: 1px solid $w100;
+        background-color: var(--clr-white);
+
+        .left {
+          width: 35%;
+
+          padding: VW(62, 1920);
+
+          .left-head {
+            width: VW(112, 1920);
+            height: VW(65, 1920);
+
+            margin-bottom: VW(60, 1920);
+            background: $w200;
+          }
+
+          .left-contnet {
+            h5,
+            h3 {
+              font-weight: 400;
+              margin-bottom: 0.5em;
+            }
+
+            h3 {
+              font-size: max(VW(40, 1920), 16px);
+              text-transform: uppercase;
+            }
+
+            .destination-card-desc {
+              font-size: 14px;
+              margin-bottom: 3.25em;
+            }
+
+            .payment {
+              @extend %rcb;
+              position: relative;
+              width: 75%;
+
+              h6 {
+                font-size: 14px;
+                font-weight: 400;
+
+                padding-bottom: 0.75em;
+              }
+
+              &::after {
+                content: "";
+                position: absolute;
+                left: 50%;
+                width: 1px;
+                height: 100%;
+                background: $w100;
+              }
+            }
+          }
+
+          .left-footer {
+            padding-top: VW(95, 1920);
+            width: 75%;
+
+            ul {
+              @extend %rcb;
+              height: max(VW(60, 1920), 40px);
+
+              li {
+                width: 45%;
+                border: 1px solid $w100;
+                border-radius: 2em;
+
+                &:nth-child(1) {
+                  background-color: var(--clr-black);
+
+                  button {
+                    color: var(--clr-white);
+                  }
+                }
+              }
+
+              button {
+                font-weight: 600;
+                color: var(--clr-black);
+              }
+            }
+          }
+        }
+
+        .right {
+          width: 60%;
+          // height: 100%;
+
+          background-color: red;
+
+          border-radius: 1em;
+          overflow: hidden;
+
+          img {
+            @extend %img;
+          }
+        }
+      }
+    }
+  }
+}
+
+//* Mobile
+#home .destination {
+  @include media("<tablet") {
+    padding-inline: $mobile-left;
+    padding-block: VW(150, 1920);
+
+    .destination-header {
+      position: relative;
+
+      h3 {
+        width: 2em;
+      }
+
+      .slider-list {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .slider-list-wrapper {
+        button {
+          color: var(--clr-black);
+        }
+      }
+    }
+
+    .destination-cards {
+      padding-top: VH(77, 844);
+
+      .destination-card {
+        .destination-card-wrap {
+          height: 75vh;
+          flex-direction: column-reverse;
+
+          .left,
+          .right {
+            width: 100%;
+          }
+
+          .left {
+            height: 60%;
+
+            .left-head {
+              width: VH(112, 844);
+              height: VH(65, 844);
+            }
+
+            .left-contnet {
+              margin-top: 1.75em;
+
+              h5,
+              h3 {
+                font-weight: 400;
+                margin-bottom: 0.75em;
+              }
+
+              .destination-card-desc {
+                font-size: 12px;
+              }
+
+              .payment {
+                width: 80%;
+
+                h6 {
+                  font-size: 12px;
+                }
+
+                p {
+                  font-size: 15px;
+                }
+              }
+            }
+
+            .left-footer {
+              padding-top: VH(30, 844);
+
+              ul {
+              }
+            }
+          }
+
+          .right {
+            height: 40%;
+            background: red;
+          }
+        }
+      }
+    }
+  }
+}
+/* Destination Page CSS End */

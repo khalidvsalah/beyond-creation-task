@@ -1,0 +1,15 @@
+@function Rem($pixels) {
+  @return calc($pixels / 10) + rem;
+}
+
+@function VW($pixels, $width: 1728) {
+  @return calc(math.div($pixels, $width) * 100) + vw;
+}
+
+@function VH($pixels, $height: 972) {
+  @return calc(math.div($pixels, $height) * 100) + vh;
+}
+
+@function _P($c, $p) {
+  @return math.percentage(math.div($c, $p));
+}
