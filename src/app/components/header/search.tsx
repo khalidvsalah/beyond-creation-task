@@ -4,6 +4,8 @@ import { normalize, clamp } from "../../utils/math";
 
 import PagesLink from "../pagesLink";
 
+const END_VALUE = 2000000;
+
 export default function Search({ openSeach }: { openSeach: boolean }) {
   const [state, setState] = useState<number>(0);
   const [progress, setPrgroess] = useState<number>(0);
@@ -12,8 +14,6 @@ export default function Search({ openSeach }: { openSeach: boolean }) {
 
   const sBallRef = useRef(null);
   const lineRef = useRef(null);
-
-  const end = 2000000;
 
   useEffect(() => {
     if (openSeach) {
@@ -51,7 +51,7 @@ export default function Search({ openSeach }: { openSeach: boolean }) {
     bar = clamp(0, 1, normalize(left, bar, e.pageX));
 
     ele.style.transform = `translateX(${bar * width}px)`;
-    setPrgroess(Math.round(bar * end));
+    setPrgroess(Math.round(bar * END_VALUE));
   };
 
   const handleDown = (e) => {
@@ -241,7 +241,7 @@ export default function Search({ openSeach }: { openSeach: boolean }) {
                   </div>
                   <div>
                     <h6>To</h6>
-                    <p>{end}</p>
+                    <p>{END_VALUE}</p>
                     <span>EUR</span>
                   </div>
                 </div>

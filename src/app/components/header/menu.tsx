@@ -105,14 +105,14 @@ export function List({
   name: string;
   choices: Array<string>;
   listOpen?: boolean;
-  setListOpen?: (arg: boolean) => void;
+  setListOpen: (arg: boolean) => void;
 }) {
-  const currencyRef = useRef(null);
+  const currencyRef = useRef<null | HTMLElement>(null);
   useEffect(() => {
     gsap.killTweensOf(".cTfx");
 
     if (listOpen) {
-      currencyRef.current.classList.add("active");
+      currencyRef?.current?.classList.add("active");
       gsap.to(".cTfx", {
         duration: 1,
         stagger: 0.035,
@@ -120,7 +120,7 @@ export function List({
         y: "0",
       });
     } else {
-      currencyRef.current.classList.remove("active");
+      currencyRef?.current?.classList.remove("active");
       gsap.to(".cTfx", {
         duration: 1,
         stagger: 0.035,
@@ -171,7 +171,7 @@ export default function Menu({
   isMobile,
 }: {
   openMenu: boolean;
-  isMobile: boolean;
+  isMobile: boolean | undefined;
 }) {
   const [currencyOpen, setCurrencyOpen] = useState(false);
   const eleRef = useRef(null);

@@ -12,7 +12,7 @@ export default function PagesLink({
   name?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   children?: React.ReactNode;
-  tfx: boolean;
+  tfx?: boolean;
 }) {
   const parentRef = useRef(null);
   const childRef = useRef(null);
